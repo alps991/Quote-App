@@ -1,0 +1,15 @@
+.box-layout__box {
+  margin: 0 auto;
+  position: relative;
+  top: 20rem;
+  border-radius: 3px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 60rem;
+  background-color: white;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1;
+}
