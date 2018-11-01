@@ -2,4 +2,13 @@
     height: 100vh;
     width: 100vw;
     background-color: yellow;
+    color: yellow;
+}
+
+.quote-text {
+    font-size: $font-size-large;
+}
+
+.quote-author {
+    font-size: $font-size-small;
 }

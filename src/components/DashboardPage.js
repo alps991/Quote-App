@@ -1,11 +1,13 @@
 import React from 'react';
 import axios from 'axios';
+import randomColor from 'randomcolor';
 
 class DashboardPage extends React.Component {
 
   state = {
     quotes: null,
-    selectedQuote: Math.floor(Math.random() * 101)
+    selectedQuote: Math.floor(Math.random() * 102),
+    color: randomColor({ luminosity: 'dark' })
   }
 
   componentDidMount() {
@@ -20,8 +22,18 @@ class DashboardPage extends React.Component {
 
   selectQuote = () => {
     this.setState({
-      selectedQuote: Math.floor(Math.random() * 103)
+      selectedQuote: Math.floor(Math.random() * 102),
+      color: randomColor({ luminosity: 'dark' })
     });
+  }
+
+  getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
   render() {
@@ -34,12 +46,13 @@ class DashboardPage extends React.Component {
     }
     const currQuote = this.state.quotes[this.state.selectedQuote];
     return (
-      <div className="dashboard-page">
+      <div className="dashboard-page" style={{ color: this.state.color, backgroundColor: this.state.color }}>
         <div className="box-layout__box">
-          <h2>{currQuote.quote}</h2>
-          <h3>{currQuote.author}</h3>
-          <button className="button" onClick={this.selectQuote}>New Quote</button>
+          <p className="quote-text">{currQuote.quote}</p>
+          <h3 className="quote-author">{"- " + currQuote.author}</h3>
+          <button className="button" style={{ background: this.state.color }} onClick={this.selectQuote}>New Quote</button>
           <a className="button"
+            style={{ background: this.state.color }}
             href={`https://twitter.com/intent/tweet?text=${currQuote.quote} - ${currQuote.author}`}
             data-size="large"
             target="_blank"
@@ -47,7 +60,7 @@ class DashboardPage extends React.Component {
             Tweet</a>
         </div>
       </div>
-    )
+    );
   }
 }
 
